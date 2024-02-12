@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Секрет СЕКРЕТНЫЙ</title>
+    <script>
+        function CheckPassword() {
+            const password = document.getElementById("secret-code").value.toLowerCase();
+            if (password === "солнышко") {
+                document.getElementById('but').setAttribute('disabled', '');
+                document.getElementById('secret-code').setAttribute('disabled', '');
+
+                function sleep(ms) {
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                }
+
+                async function hide() {
+                    document.getElementById('but').style.cssText =
+                        `
+                    animation: invisible 0.6s linear;
+                    animation-fill-mode:forwards;
+                    `;
+                    document.getElementById('secret-code').style.cssText =
+                        `
+                    animation: invisible 0.6s linear;
+                    animation-fill-mode:forwards;
+                    `;
+                    document.getElementById('hint').style.cssText =
+                        `
+                    animation: invisible 0.6s linear;
+                    animation-fill-mode:forwards;
+                    `;
+
+                    await sleep(50);
+                }
+
+                hide();
+
+                async function setHeartAnimation() {
+                    let st = document.styleSheets[0].cssRules[3];
+                    let st1 = document.styleSheets[0].cssRules[4];
+                    let st2 = document.styleSheets[0].cssRules[5];
+
+                    await sleep(2000);
+
+                    st1.style = `
+                        content: '';
+                        position: absolute;
+                        height: 300px;
+                        width: 300px;
+                        top: -50%;
+                        background: #f20044;
+                        border-radius: 150px;
+                        animation: heart-color1 0.8s linear;
+                        animation-fill-mode:forwards;
+                    `;
+                    st2.style = `
+                        content: '';
+                        position: absolute;
+                        height: 300px;
+                        width: 300px;
+                        right: -50%;
+                        background: #f20044;
+                        border-radius: 150px;
+                        animation: heart-color2 0.8s linear;
+                        animation-fill-mode:forwards;
+                    `;
+
+                    st.style = `
+                        height: 300px;
+                        width: 300px;
+                        background: #f20044;
+                        position: relative;
+                        transform: rotate(-45deg);
+                        animation: heart-color 0.8s linear;
+                        animation-fill-mode:forwards;
+                        z-index: 0;
+                    `;
+
+                    let text = document.styleSheets[0].cssRules[17];
+
+                    st1.style = `
+                        content: '';
+                        position: absolute;
+                        height: 300px;
+                        width: 300px;
+                        background: #f20044;
+                        top: -50%;
+                        border-radius: 150px;
+                        box-shadow: -10px -10px 90px #f20044;
+                    `;
+                    st2.style = `
+                            content: '';
+                            position: absolute;
+                            height: 300px;
+                            width: 300px;
+                            background: #f20044;
+                            right: -50%;
+                            border-radius: 150px;
+                            box-shadow: 10px 10px 90px #f20044;
+                    `;
+
+                    st.style = `
+                        height: 300px;
+                        width: 300px;
+                        background: #f20044;
+                        position: relative;
+                        transform: rotate(-45deg);
+                        box-shadow: -10px 10px 90px #f20044;
+                        animation: heart 1s linear infinite;
+                        z-index: 0;
+                    `;
+
+                    await sleep(5000);
+
+                    text.style = `
+                        position: absolute;
+                        z-index: 0;
+                        width: 800px;
+                        height: 1200px;
+                        background: aliceblue;
+                        top:-400px;
+                        left:-40px;
+                        opacity: 0;
+                        animation: letter 1.6s linear;
+                        animation-fill-mode:forwards;
+                        font-family: 'Caveat', cursive;
+                        font-size: 40px;
+                        padding: 40px 40px 30px 30px;
+                        margin: 0 auto;
+                    `;
+
+                }
+
+                setHeartAnimation();
+
+            } else {
+                document.getElementById("secret-code").value = '';
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .button-field {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0b1522;
+            background-image: url("papereffect.png");
+        }
+
+        #heart {
+            height: 300px;
+            width: 300px;
+            background: #f20044;
+            position: relative;
+            transform: rotate(-45deg);
+            z-index: 1;
+            opacity: 0.2;
+        }
+
+        #heart:before {
+            content: '';
+            position: absolute;
+            height: 300px;
+            width: 300px;
+            background: #f20044;
+            top: -50%;
+            border-radius: 150px;
+        }
+
+        #heart:after {
+            content: '';
+            position: absolute;
+            height: 300px;
+            width: 300px;
+            background: #f20044;
+            right: -50%;
+            border-radius: 150px;
+        }
+
+        .input-secret-word {
+            position: absolute;
+            z-index: 2;
+            width: 800px;
+            height: 250px;
+        }
+
+        .hint {
+            font-family: 'Caveat', cursive;
+            color: white;
+            font-size: 60px;
+            margin: 0 auto;
+            text-align: center;
+            user-select: none;
+        }
+
+        .pass {
+            width: 500px;
+            height: 80px;
+            margin: 0 auto;
+        }
+
+        .secret-code {
+            width: 500px;
+            height: 75px;
+            border: none;
+            border-radius: 38px;
+            top: 45%;
+            font-size: 50px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .button {
+            width: 200px;
+            height: 80px;
+            margin: 0 auto;
+            margin-top: 15px;
+            user-select: none;
+        }
+
+        .enter-code {
+            font-family: 'Caveat', cursive;
+            width: 200px;
+            height: 75px;
+            border: none;
+            border-radius: 38px;
+            color: white;
+            font-size: 50px;
+            background: #820125;
+        }
+
+        @keyframes invisible {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes heart {
+            0% {
+                transform: rotate(-45deg) scale(1.07);
+            }
+            80% {
+                transform: rotate(-45deg) scale(1.0);
+            }
+            100% {
+                transform: rotate(-45deg) scale(0.9);
+            }
+        }
+
+        @keyframes heart-color {
+            0% {
+                box-shadow: none;
+            }
+            100% {
+                box-shadow: -10px 10px 90px #f20044;
+                opacity: 1;
+            }
+        }
+
+        @keyframes heart-color1 {
+            0% {
+                box-shadow: none;
+            }
+            100% {
+                box-shadow: -10px -10px 90px #f20044;
+            }
+        }
+
+        @keyframes heart-color2 {
+            0% {
+                box-shadow: none;
+            }
+            100% {
+                box-shadow: 10px 10px 90px #f20044;
+            }
+        }
+
+        .text {
+            position: absolute;
+            z-index: 0;
+            width: 800px;
+            height: 1050px;
+            background: aliceblue;
+            top: -400px;
+            font-family: 'Caveat', cursive;
+            font-size: 40px;
+            /*opacity: 0;*/
+            /*display: none;*/
+            background: url("2259.jpg") no-repeat;
+        }
+
+        .letter-text {
+            width: 750px;
+            height: 1000px;
+            text-align: left;
+            margin: 50px auto 0;
+        }
+
+        @keyframes letter {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .photo1{
+            box-shadow: 0 0 10px #AAAAAA;
+            rotate: -9deg;
+            margin-left: 42px;
+            position: absolute;
+        }
+
+        .photo2{
+            position: absolute;
+            rotate: 4deg;
+            box-shadow: 0 0 10px #AAAAAA;
+            right: 40px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="button-field">
+    <div class="heart" id="heart"></div>
+    <div class="input-secret-word">
+        <div class="hint" id="hint">
+            Как я тебя чаще всего называю?
+        </div>
+        <div class="pass">
+            <input type="password" name="secret-code" class="secret-code" id="secret-code" autocomplete="off">
+        </div>
+        <div class="button">
+            <input type="button" name="enter-code" id="but" class="enter-code" value="Тык" onclick="CheckPassword()">
+        </div>
+        <div class="text">
+            <div class="letter-text">
+                <p>&emsp;Пока СОЛНЫШКО далеко я подумал, что надо бы сайтики пописать :)</p>
+                <p>
+                    &emsp;Я рад что тогда, на танцах, я позвал тебя потанцевать со мной.
+                    Мне действительно очень позвезло с тобой.
+                </p>
+                <p>
+                    &emsp;Люблю тебя и очень жду нашей встречи❤️
+                </p>
+                <img src="photo1.png" class="photo1">
+                <img src="photo2.png" class="photo2">
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
