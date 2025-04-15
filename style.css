@@ -121,15 +121,32 @@ main {
     border-radius: 20px;
     border: none;
     cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     font-size: 18px;
 }
 
+.sign {
+    margin-left: 10px;
+}
+
+.forum-desc {
+    max-width: 80%;
+    min-width: 200px;
+    padding-left: 0;
+    text-align: justify;
+    margin: 40px auto;
+}
+
 footer {
-    background-color: #0063af;
+    background-color: #234086;
     width: 100%;
-    height: 50px;
+    height: 20px;
+    padding: 10px;
+    color: white;
+    text-align: right;
+    display: flex;
+    justify-content: center;
 }
 
 ul {
@@ -137,6 +154,10 @@ ul {
 }
 
 @media (max-width: 600px) {
+    .forum-desc {
+        font-size: 17px;
+    }
+
     .time {
         font-size: 17px;
     }
@@ -164,6 +185,10 @@ ul {
 
 /* Медиа-запрос для средних экранов */
 @media (min-width: 601px) and (max-width: 1024px) {
+    .forum-desc {
+        font-size: 20px;
+    }
+
     .time {
         font-size: 20px;
     }
@@ -179,6 +204,10 @@ ul {
 
 /* Медиа-запрос для больших экранов */
 @media (min-width: 1025px) {
+    .forum-desc {
+        font-size: 24px;
+    }
+
     .time {
         font-size: 24px;
     }
