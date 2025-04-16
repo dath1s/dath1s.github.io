@@ -181,6 +181,20 @@ ul {
     .min{
         margin-top: -10px;
     }
+
+    .register-button {
+        margin-bottom: 10px;
+    }
+
+    .sign {
+        margin-top: 10px;
+        margin-left: 0;
+        margin-bottom: 30px;
+    }
+
+    .TITLE {
+        text-align: center;
+    }
 }
 
 /* Медиа-запрос для средних экранов */
