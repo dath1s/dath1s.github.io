@@ -4,6 +4,7 @@
 }
 
 body {
+    text-align: justify;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -123,10 +124,11 @@ main {
     cursor: pointer;
     margin-top: 30px;
     margin-bottom: 30px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .sign {
+    width: 300px;
     margin-left: 10px;
 }
 
@@ -170,6 +172,10 @@ ul {
         font-size: 15px;
     }
 
+    .description > p > i {
+        font-size: 11px;
+    }
+
     .long {
         margin-top: 20px;
     }
@@ -183,10 +189,12 @@ ul {
     }
 
     .register-button {
+        width: 100%;
         margin-bottom: 10px;
     }
 
     .sign {
+        width: 100%;
         margin-top: 10px;
         margin-left: 0;
         margin-bottom: 30px;
@@ -214,6 +222,10 @@ ul {
     .description {
         font-size: 17px;
     }
+
+    .description > p > i {
+        font-size: 13px;
+    }
 }
 
 /* Медиа-запрос для больших экранов */
@@ -232,5 +244,9 @@ ul {
 
     .description {
         font-size: 19px;
+    }
+
+    .description > p > i {
+        font-size: 15px;
     }
 }
