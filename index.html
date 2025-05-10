@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квест в Тейвате</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="DragDropTouch.js"></script>
+</head>
+<body>
+<!-- Фоновая картинка -->
+<div id="background"></div>
+
+<!-- Начальная страница -->
+<div id="start-screen" class="screen">
+    <!-- Изображение Сяо -->
+    <div id="siao-image-container">
+        <img id="siao-image" src="xiao.png" alt="Сяо">
+    </div>
+
+    <!-- Контейнер для текста -->
+    <div class="text-container">
+        <h1>Дорогая Оленька,</h1>
+        <p>Сегодня тебе предстоит отправиться в увлекательное путешествие по Тейвату. Твоя миссия — найти потерянное сердце, которое скрыто в тайных уголках этого мира. Сяо будет твоим проводником. Готова ли ты начать?</p>
+        <button onclick="startQuest()">Начать квест</button>
+    </div>
+</div>
+
+<div id="location1" class="screen hidden">
+    <h2>Дверь Загадок</h2>
+    <p>Вы вместе с Сяо оказываетесь у загадочной двери. Сяо говорит: 'Чтобы пройти дальше, тебе нужно разгадать три загадки Тейвата. Каждая следующая будет чуть сложнее.'</p>
+
+    <!-- Загадка 1 -->
+    <div id="riddle-1" class="riddle">
+        <p>Загадка 1: "Я играю на флейте и люблю вино. Меня называют Бардом Ветра. Кто я?"</p>
+        <input type="text" id="riddle-answer-1" placeholder="Введи ответ">
+        <button onclick="checkRiddle(1)">Ответить</button>
+        <p id="riddle-feedback-1"></p>
+    </div>
+
+    <!-- Загадка 2 -->
+    <div id="riddle-2" class="riddle hidden">
+        <p>Загадка 2: "Мы — таинственные существа, охраняющие Сумеречные Земли. Мы появляемся в темноте и исчезаем при свете. Кто мы?"</p>
+        <input type="text" id="riddle-answer-2" placeholder="Введи ответ">
+        <button onclick="checkRiddle(2)">Ответить</button>
+        <p id="riddle-feedback-2"></p>
+    </div>
+
+    <!-- Загадка 3 -->
+    <div id="riddle-3" class="riddle hidden">
+        <p>Загадка 3: "Я живу в Ли Юэ и помогаю людям своими знаниями. Моя фамилия звучит как название древнего клана и живу в парящем дворце. Кто я?"</p>
+        <input type="text" id="riddle-answer-3" placeholder="Введи ответ">
+        <button onclick="checkRiddle(3)">Ответить</button>
+        <p id="riddle-feedback-3"></p>
+    </div>
+</div>
+
+<!-- Локация 2: Кристальный грот -->
+<div id="location2" class="screen hidden">
+    <h2>Кристальный грот</h2>
+    <p>Ты попадаешь в Кристальный грот. Сяо говорит: 'Чтобы продолжить путь, собери все крио-элементы.'</p>
+
+    <!-- Progress Bar -->
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <!-- Счетчик кристаллов -->
+    <p id="crystal-counter">0/10</p>
+
+    <!-- Контейнер для кристаллов -->
+    <div id="game-area"></div>
+
+    <p id="cryo-feedback"></p>
+    <button onclick="startCryoGame()" id="cryo-start-button">Начать игру</button>
+</div>
+
+<!-- Локация 3: Тайное убежище -->
+<div id="location3" class="screen hidden">
+    <h2>Тайное убежище</h2>
+    <p>Ты находишь тайное убежище. Здесь тебе нужно разгадать комбинацию замка из пяти элементов.</p>
+
+    <!-- Комбинация замка -->
+    <div id="lock-combination">
+        <p>Подсказка: "Сердце Тейвата связано с элементами. Расположи их в правильном порядке и замок откроется."</p>
+
+        <!-- Доступные элементы -->
+        <div id="elements">
+            <div class="element anemo" draggable="true">Анемо</div>
+            <div class="element pyro" draggable="true">Пиро</div>
+            <div class="element cryo" draggable="true">Крио</div>
+            <div class="element geo" draggable="true">Гео</div>
+            <div class="element electro" draggable="true">Электро</div>
+        </div>
+
+        <!-- Панель для размещения элементов -->
+        <div id="combination-panel">
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+        </div>
+
+        <button onclick="checkCombination()" id="check-button" disabled>Проверить</button>
+        <p id="combination-feedback"></p>
+    </div>
+</div>
+
+<!-- Финальная локация -->
+<div id="final-location" class="screen hidden">
+    <h2>Сердце Тейвата</h2>
+    <p>Ты нашла потерянное сердце!</p>
+    <p>Это сердце — символ моей любви к тебе. Спасибо, что прошла этот квест вместе со мной. С Днём святого Валентина,
+        Любимая!</p>
+    <button onclick="openGift()">Открыть подарок</button>
+    <div class="heart" id="heart"></div>
+</div>
+
+<!-- Фоновая музыка -->
+<audio id="background-music" loop autoplay>
+    <source src="Liyue.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает элемент audio.
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>

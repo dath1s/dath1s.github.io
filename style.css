@@ -1,0 +1,422 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4eade;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Полная ширина экрана */
+    height: 100vh; /* Полная высота экрана */
+    background-image: url('background.png'); /* Путь к вашему фоновому изображению */
+    background-size: cover; /* Растягиваем изображение на весь экран */
+    background-position: center; /* Центрируем изображение */
+    z-index: -1; /* Фон находится под всеми элементами */
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    transition: opacity 0.5s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #7d9ec0;
+    color: white;
+}
+
+button:hover {
+    background-color: #5c8a9c;
+}
+
+#progress-container {
+    width: 100%;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 100%;
+    background-color: #add8e6; /* Цвет прогресс-бара */
+    border-radius: 10px;
+}
+
+#game-area {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+#game-area .crystal {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #add8e6; /* Цвет крио */
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.8);
+}
+
+#crystal-counter {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #7d9ec0; /* Цвет счетчика */
+}
+
+#background-music {
+    display: none;
+}
+
+#game-area {
+    position: relative; /* Важно для позиционирования кристаллов */
+    width: 100%; /* Занимает всю ширину родительского элемента */
+    height: 400px; /* Фиксированная высота контейнера */
+    border: 2px dashed #7d9ec0; /* Опционально: граница для визуализации области */
+    margin: 20px 0; /* Отступы для лучшего отображения */
+    overflow: hidden; /* Предотвращает выход за пределы контейнера */
+}
+
+#game-area .crystal {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url('Item_Crystal_Chunk.webp'); /* Путь к изображению кристалла */
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 8px; /* Небольшой скругленный край */
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(173, 216, 230, 0.8); /* Эффект свечения */
+    animation: appear 0.5s ease-in-out; /* Анимация появления */
+}
+
+/* Анимация появления кристаллов */
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Анимация сбора кристаллов */
+@keyframes collect {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+        box-shadow: 0 0 40px rgba(173, 216, 230, 1); /* Усиление свечения */
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.riddle {
+    margin: 20px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+#lock-combination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#elements {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.element {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: grab;
+    font-size: 12px;
+}
+
+.element.anemo {
+    background-color: #add8e6; /* Цвет Анемо */
+}
+
+.element.pyro {
+    background-color: #ff7f50; /* Цвет Пиро */
+}
+
+.element.cryo {
+    background-color: #afeeee; /* Цвет Крио */
+}
+
+.element.geo {
+    background-color: #d2b48c; /* Цвет Гео */
+}
+
+.element.electro {
+    background-color: #9370db; /* Цвет Электро */
+}
+
+#combination-panel {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.slot {
+    width: 60px;
+    height: 60px;
+    border: 2px dashed #7d9ec0;
+    border-radius: 5px;
+}
+
+#siao-image-container {
+    position: absolute; /* Вынимаем из потока документа */
+    top: 5%;
+    left: 50%;
+    z-index: 1; /* Чтобы изображение находилось поверх фона */
+}
+
+#siao-image {
+    width: 300px; /* Размер изображения Сяо */
+    animation: float 3s infinite ease-in-out; /* Анимация "плавания" */
+}
+
+/* Анимация "плавания" */
+@keyframes float {
+    0%, 100% {
+        transform: translate(-50%, 0) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -10px) scale(1.05);
+    }
+}
+
+/* Контейнер для текста */
+.text-container {
+    top: 10%;
+    position: relative; /* Оставляем в потоке документа */
+    background: rgba(0, 0, 0, 1); /* Полупрозрачный фон для контраста */
+    background-position: center;
+    background-position-y: 45%;
+    background-image: linear-gradient(rgba(0, 0, 0,0.7), rgba(0, 0, 0,0.7)), url("assets/diag3.webp");
+    border: 2px solid #add8e6; /* Голубая рамка */
+    border-radius: 15px; /* Скругленные углы */
+    padding: 20px 40px; /* Отступы внутри контейнера */
+    max-width: 80%; /* Ограничение максимальной ширины */
+    text-align: center; /* Центрирование текста */
+    color: #ffffff; /* Белый цвет текста */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Эффект свечения вокруг контейнера */
+    z-index: 2; /* Чтобы контейнер находился выше изображения Сяо */
+    margin-top: 20px; /* Добавляем отступ от изображения Сяо */
+}
+
+/* Загрузка шрифта */
+@font-face {
+    font-family: 'GenshinFont'; /* Название шрифта (можете назвать его как угодно) */
+    src: url('Genshin_Impact.ttf') format('truetype'); /* Путь к файлу шрифта */
+    font-weight: normal; /* Вес шрифта (normal, bold и т.д.) */
+    font-style: normal; /* Стиль шрифта (normal, italic и т.д.) */
+}
+
+/* Применение шрифта ко всему проекту */
+body {
+    font-family: 'GenshinFont', Arial, sans-serif; /* Используем новый шрифт по умолчанию */
+}
+
+/* Кнопка "Начать квест" */
+#start-screen button {
+    font-family: 'GenshinFont', Arial, sans-serif; /* Используйте ваш загруженный шрифт */
+    font-size: 18px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #add8e6, #7d9ec0); /* Градиент Анемо */
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(173, 216, 230, 0.8); /* Эффект свечения */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Анимация при наведении */
+#start-screen button:hover {
+    transform: scale(1.1); /* Увеличение размера */
+    box-shadow: 0 0 40px rgba(173, 216, 230, 1); /* Усиление свечения */
+    background: linear-gradient(135deg, #87ceeb, #5c8a9c); /* Более насыщенный градиент */
+}
+
+/* Контейнер для загадок */
+.riddle {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+    border: 2px solid #add8e6; /* Голубая обводка (стихия Анемо) */
+    border-radius: 15px; /* Скругленные углы */
+    box-shadow: 0 0 20px rgba(173, 216, 230, 0.8); /* Эффект свечения */
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Для анимаций */
+}
+
+/* Обводка контейнера с градиентом */
+.riddle::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid transparent; /* Прозрачная обводка */
+    border-image: linear-gradient(135deg, #add8e6, #7d9ec0, #add8e6) 1; /* Градиентная обводка */
+    border-radius: 15px;
+    z-index: -1;
+}
+
+/* Поле для ввода ответа */
+.riddle input {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1); /* Полупрозрачный фон */
+    color: white;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(173, 216, 230, 0.5); /* Внутреннее свечение */
+}
+
+/* Активное поле ввода */
+.riddle input:focus {
+    background-color: rgba(255, 255, 255, 0.2); /* Более светлый фон при фокусе */
+    box-shadow: inset 0 0 20px rgba(173, 216, 230, 0.8); /* Усиление свечения */
+    outline: none; /* Убираем стандартную рамку браузера */
+}
+
+/* Кнопка "Ответить" */
+.riddle button {
+    font-family: 'GenshinFont', Arial, sans-serif; /* Используйте ваш загруженный шрифт */
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #add8e6, #7d9ec0); /* Градиентный фон */
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(173, 216, 230, 0.8); /* Эффект свечения */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Анимация при наведении на кнопку */
+.riddle button:hover {
+    transform: scale(1.1); /* Увеличение размера */
+    box-shadow: 0 0 30px rgba(173, 216, 230, 1); /* Усиление свечения */
+    background: linear-gradient(135deg, #87ceeb, #5c8a9c); /* Более насыщенный градиент */
+}
+
+/* Добавляем эффект "текущего элемента" на кнопку */
+.riddle button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #add8e6, #7d9ec0); /* Горизонтальный градиент */
+    z-index: -1;
+    transition: width 0.3s ease;
+}
+
+/* Анимация при наведении курсора */
+.riddle button:hover::before {
+    width: 100%; /* Расширяем градиент на всю ширину кнопки */
+}
+
+@keyframes heart {
+    0% {
+        transform: rotate(-45deg) scale(1.07);
+    }
+    80% {
+        transform: rotate(-45deg) scale(1.0);
+    }
+    100% {
+        transform: rotate(-45deg) scale(0.9);
+    }
+}
+
+#heart {
+    height: 100px;
+    width: 100px;
+    background: #f20044;
+    position: relative;
+    transform: rotate(-45deg);
+    z-index: 1;
+    bottom: -10%;
+    box-shadow: -10px 10px 90px #f20044;;
+    animation: heart 0.8s infinite
+}
+
+#heart:before {
+    content: '';
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background: #f20044;
+    top: 0%;
+    border-radius: 150px;
+    box-shadow: -10px 10px 90px #f20044;
+
+}
+
+#heart:after {
+    content: '';
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background: #f20044;
+    left: 0%;
+    top: -50%;
+    border-radius: 150px;
+    box-shadow: -10px 10px 90px #f20044;;
+
+}
+
